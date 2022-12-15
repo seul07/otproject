@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<input type="hidden" name="memId" th:value="${userId}">
+<div class="container">
+남/여
+<select name="type">
+    <option value="W">여</option>
+    <option value="M">남</option>
+</select>
+층수
+<select>
+
+</select>
+</div>
+</body>
+<script>
+    document.querySelector('select[name=type]').addEventListener('change',  () => {
+        let type = document.querySelector("select[name=type] option:checked");
+        let userId = document.querySelector("input[name=userId]").value;
+        getFloorList(type,userId)
+            .then(response => {
+
+
+            })
+
+    });
+
+    function getFloorList(type,userId){
+        return axios.get(contextPath + "/user/floor/"+userId+"/"+type);
+    }
+
+
+
+</script>
+</html>

@@ -1,10 +1,32 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<!DOCTYPE html>
+<head th:replace="layout/header::head"></head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <body>
-<p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
+<!-- Background Video-->
+<video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/mp4/bg.mp4" type="video/mp4" /></video>
+<!-- Masthead-->
+<div class="masthead">
+    <div class="masthead-content text-white">
+        <div class="container-fluid px-4 px-lg-0">
+            <h1 class="fst-italic lh-1 mb-4">Get in to your building</h1>
+            <p class="mb-5">사용자 아이디를 입력하세요</p>
+            <form id="getMemberRoom" method="get">
+                <div class="row input-group-newsletter">
+                    <div class="col"><input class="form-control" id="userId" name="userId" type="text" data-sb-validations="required" /></div>
+                    <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="button">Go</button></div>
+                </div>
+                <div class="invalid-feedback mt-2" data-sb-feedback="text:required">아이디를 입력해야 합니다.</div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    let chapter = document.querySelector('#submitButton');
+    chapter.addEventListener('click', (e) => {
+        e.preventDefault();
+        let userId = document.querySelector('input[name="userId"]').value;
+        window.location.href = contextPath+"/mem/page/"+userId;
+    });
+</script>
 </html>

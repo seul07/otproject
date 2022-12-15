@@ -1,12 +1,10 @@
 package com.joy.otproject.repository;
 
-import com.joy.otproject.entity.Member;
 import com.joy.otproject.entity.Room;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.UUID;
 
 @Repository
 public class RoomRepository {

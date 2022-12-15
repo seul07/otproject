@@ -2,9 +2,6 @@ package com.joy.otproject.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 
@@ -14,8 +11,8 @@ public class Room {
     @Id @GeneratedValue
     Long id;
     @ManyToOne
-    @JoinColumn(name = "ot_mem_id")
-    Member mem_id;
+    @JoinColumn(name = "user_id")
+    User user;
     Integer floor;
     String room_number;
     String room_type;

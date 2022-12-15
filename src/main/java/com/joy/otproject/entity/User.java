@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Entity(name = "ot_member")
 @Getter @Setter
-public class Member {
+public class User {
 //    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
     @Id
@@ -21,11 +21,11 @@ public class Member {
 //    @Column(columnDefinition = "BINARY(16)")
     @Type(type="org.hibernate.type.UUIDCharType")
     UUID id;
-    String ot_mem_id;
-    String ot_mem_pw;
+    String user_id;
+    String user_pw;
+    String user_name;
     String address;
-    String mobile;
     @CreatedDate
     LocalDateTime created_date;
-
+    String ot_usercol;
 }

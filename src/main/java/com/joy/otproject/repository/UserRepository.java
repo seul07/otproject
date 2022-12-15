@@ -1,6 +1,6 @@
 package com.joy.otproject.repository;
 
-import com.joy.otproject.entity.Member;
+import com.joy.otproject.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -8,17 +8,17 @@ import javax.persistence.PersistenceContext;
 import java.util.UUID;
 
 @Repository
-public class MemberRepository {
+public class UserRepository {
 
     @PersistenceContext
     private EntityManager em;
 
-    public UUID save(Member user){
+    public UUID save(User user){
         em.persist(user);
         return user.getId();
     }
 
-    public Member find(UUID id){
-        return em.find(Member.class,id);
+    public User find(UUID id){
+        return em.find(User.class,id);
     }
 }
