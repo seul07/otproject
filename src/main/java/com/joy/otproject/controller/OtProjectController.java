@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 public class OtProjectController {
 
@@ -25,16 +27,15 @@ public class OtProjectController {
         return "main";
     }
 
-    @GetMapping("/mem/page/{userId}")
+    @GetMapping("/user/page/{userId}")
     public String memPage(@PathVariable String userId, Model model){
         model.addAttribute("userId",userId);
         return "room/detail";
     }
 
-    @GetMapping("/mem/floor/{userId}/{type}")
+    @GetMapping("/user/floor/{userId}/{type}")
     public String memFloor(@PathVariable String userId,@PathVariable String type, Model model){
-        Room room = new Room();
-        room.setRoom_type(type);
+        List<Integer> floors = otService.findFloor(userId,type);
         return "room/detail";
     }
 }

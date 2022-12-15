@@ -5,17 +5,21 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity(name = "ot_room")
 @Getter @Setter
 public class Room {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     Long id;
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     User user;
     Integer floor;
-    String room_number;
-    String room_type;
+    String roomNumber;
+    String roomType;
     String occupy;
     String vh;
+
 }

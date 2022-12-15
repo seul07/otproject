@@ -10,22 +10,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity(name = "ot_member")
+@Entity(name = "ot_user")
 @Getter @Setter
 public class User {
-//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-//    @Column(columnDefinition = "BINARY(16)")
-    @Type(type="org.hibernate.type.UUIDCharType")
-    UUID id;
-    String user_id;
-    String user_pw;
-    String user_name;
+    String userId;
+    String userPw;
+    String userName;
     String address;
     @CreatedDate
-    LocalDateTime created_date;
-    String ot_usercol;
+    LocalDateTime createdDate;
+    String otUsercol;
 }

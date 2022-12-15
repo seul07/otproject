@@ -13,12 +13,12 @@ public class UserRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public UUID save(User user){
+    public String save(User user){
         em.persist(user);
-        return user.getId();
+        return user.getUserId();
     }
 
-    public User find(UUID id){
-        return em.find(User.class,id);
+    public User find(String userId){
+        return em.find(User.class,userId);
     }
 }
