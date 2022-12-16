@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,14 +29,38 @@ public class OtProjectController {
     }
 
     @GetMapping("/user/page/{userId}")
-    public String memPage(@PathVariable String userId, Model model){
+    public String userPage(@PathVariable String userId, Model model){
         model.addAttribute("userId",userId);
         return "room/detail";
     }
 
     @GetMapping("/user/floor/{userId}/{type}")
-    public String memFloor(@PathVariable String userId,@PathVariable String type, Model model){
+    @ResponseBody
+    public List<Integer> userFloor(@PathVariable String userId,@PathVariable String type, Model model){
         List<Integer> floors = otService.findFloor(userId,type);
-        return "room/detail";
+        return floors;
+    }
+
+    @GetMapping("/user/room/{userId}/{type}/{floor}")
+    @ResponseBody
+    public List<Room> userRooms(@PathVariable String userId,@PathVariable String type,
+                                   @PathVariable String floor,
+                                   Model model){
+        List<Room> rooms = otService.findRooms(userId,type,floor);
+        return rooms;
+    }
+
+    @GetMapping("/user/room/update/{userId}/{id}/{newOccupy}")
+    @ResponseBody
+    public String updateRoom(@PathVariable String userId,@PathVariable String id,
+                                @PathVariable String newOccupy,
+                                Model model){
+        String result = "success";
+        try {
+            otService.updateRoom(userId,id,newOccupy);
+        }catch (Exception e){
+            result="fail";
+        }
+        return result;
     }
 }

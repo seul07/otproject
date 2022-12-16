@@ -3,30 +3,38 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <body>
 <input type="hidden" name="userId" th:value="${userId}">
-<div class="container">
-남/여
-<select name="type">
-    <option value="">선택하시오.</option>
-    <option value="W">여</option>
-    <option value="M">남</option>
-</select>
-층수
-<select>
+<div class="masthead">
+    <div class="masthead-content text-white">
+        남/여
+        <select name="type">
+            <option value="">선택하시오.</option>
+            <option value="W">여</option>
+            <option value="M">남</option>
+        </select>
+        층수
+        <select name="floor">
 
-</select>
+        </select>
+
+        <div id="rooms">
+
+
+        </div>
+    </div>
 </div>
 </body>
 <script>
+    let userId = document.querySelector("input[name=userId]").value;
     document.querySelector('select[name=type]').addEventListener('change',  () => {
         let type = document.querySelector("select[name=type] option:checked").value;
         if(!type){
             return;
         }
-        let userId = document.querySelector("input[name=userId]").value;
+
         getFloorList(type,userId)
             .then(response => {
-
-
+                let html = setFloor(response.data);
+                document.querySelector("select[name=floor]").innerHTML = html;
             })
 
     });
@@ -35,7 +43,91 @@
         return axios.get( "/user/floor/"+userId+"/"+type);
     }
 
+    function setFloor(floors){
+        let html = '<option>선택하세요.</option>';
+        if(floors==null || floors.length==0) return html;
+        floors.forEach((floor, index) => {
+            html += `
+             <option value${floor}>${floor}</option>
+            `
+        });
+        return html;
+    }
 
+    document.querySelector('select[name=floor]').addEventListener('change',  () => {
+        let type = document.querySelector("select[name=type] option:checked").value;
+        let floor = document.querySelector("select[name=floor] option:checked").value;
+        if(!floor){
+            return;
+        }
+
+        setRoomList(type,floor);
+
+    });
+
+    function setRoomList(type,floor){
+        getRoomList(type,floor,userId)
+            .then(response => {
+                let html = setRooms(response.data);
+                document.querySelector("#rooms").innerHTML = html;
+            })
+    }
+
+    function getRoomList(type,floor,userId){
+        return axios.get( "/user/room/"+userId+"/"+type+"/"+floor);
+    }
+
+    function setRooms(rooms){
+        let html = '';
+        if(rooms==null || rooms.length==0) return html;
+        rooms.forEach((room, index) => {
+            html += `
+             <div data-room="${room.roomNumber}" data-id="${room.id}" data-occupy="${room.occupy}" class="room-block ${room.occupy == 'Y' ? 'active' : ''}"></div>
+            `
+        });
+        return html;
+    }
+
+    let rooms = document.querySelectorAll(".room-block");
+    console.log(rooms);
+
+    document.querySelector('#rooms').addEventListener('click', function(e) {
+        e.preventDefault();
+        let ele = e.target;
+        let roomNum = ele.dataset.room;
+        let occupy = ele.dataset.occupy;
+        let id = ele.dataset.id;
+        let newOccupy = '';
+        if(occupy=='Y'){
+            newOccupy = 'N';
+        }else{
+            newOccupy = 'Y';
+        }
+        updateRoomOccupy(id,userId,newOccupy)
+            .then(response => {
+                let type = document.querySelector("select[name=type] option:checked").value;
+                let floor = document.querySelector("select[name=floor] option:checked").value;
+                setRoomList(type,floor);
+
+            })
+    });
+
+    function updateRoomOccupy(id,userId,newOccupy){
+        return axios.get( "/user/room/update/"+userId+"/"+id+"/"+newOccupy);
+    }
 
 </script>
+<style>
+    #rooms{display: flex}
+    .room-block{
+        width: 50px;
+        height: 50px;
+        border: #1a1a1a solid;
+        background: #ced4da;
+    }
+
+    .active{
+        background: #ffc720;
+    }
+</style>
 </html>

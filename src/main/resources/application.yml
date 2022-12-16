@@ -4,6 +4,8 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
 
   jpa:
     hibernate:
@@ -16,3 +18,4 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+

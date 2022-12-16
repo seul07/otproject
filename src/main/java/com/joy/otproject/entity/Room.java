@@ -13,7 +13,7 @@ public class Room {
     @Id
     @GeneratedValue
     Long id;
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
     Integer floor;

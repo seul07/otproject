@@ -10,13 +10,13 @@
         <div class="container-fluid px-4 px-lg-0">
             <h1 class="fst-italic lh-1 mb-4">Get in to your building</h1>
             <p class="mb-5">사용자 아이디를 입력하세요</p>
-            <form id="getMemberRoom" method="get">
-                <div class="row input-group-newsletter">
-                    <div class="col"><input class="form-control" id="userId" name="userId" type="text" data-sb-validations="required" /></div>
-                    <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="button">Go</button></div>
+            <div class="row input-group-newsletter">
+                <div class="col"><input class="form-control" id="userId" name="userId"
+                                        type="text" data-sb-validations="required" />
                 </div>
-                <div class="invalid-feedback mt-2" data-sb-feedback="text:required">아이디를 입력해야 합니다.</div>
-            </form>
+                <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="button">Go</button></div>
+            </div>
+            <div class="invalid-feedback mt-2" data-sb-feedback="text:required">아이디를 입력해야 합니다.</div>
         </div>
     </div>
 </div>
@@ -25,8 +25,23 @@
     let chapter = document.querySelector('#submitButton');
     chapter.addEventListener('click', (e) => {
         e.preventDefault();
+        goUserPage();
+
+    });
+
+    function goUserPage(){
         let userId = document.querySelector('input[name="userId"]').value;
         window.location.href = "/user/page/"+userId;
+    }
+
+    var input = document.querySelector('input[name="userId"]');
+
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            goUserPage();
+        }
     });
+
 </script>
 </html>
