@@ -1,6 +1,7 @@
 package com.joy.otproject.controller;
 
 import com.joy.otproject.entity.Room;
+import com.joy.otproject.entity.User;
 import com.joy.otproject.service.OtService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class OtProjectController {
     private final OtService otService;
 
     public OtProjectController(
-            @Qualifier("otService") OtService otService
+            OtService otService
     ) {
         this.otService = otService;
     }
@@ -26,6 +27,17 @@ public class OtProjectController {
     public String main(Model model){
         model.addAttribute("data","hello");
         return "main";
+    }
+
+    @GetMapping("/user/{userId}")
+    @ResponseBody
+    public String userFind(@PathVariable String userId, Model model){
+        User user = otService.findUser(userId);
+        String message="FAIL";
+        if(user!=null){
+            message="SUCCESS";
+        }
+        return message;
     }
 
     @GetMapping("/user/page/{userId}")

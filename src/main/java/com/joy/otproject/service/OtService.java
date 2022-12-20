@@ -1,7 +1,9 @@
 package com.joy.otproject.service;
 
 import com.joy.otproject.entity.Room;
+import com.joy.otproject.entity.User;
 import com.joy.otproject.repository.RoomRepository;
+import com.joy.otproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +14,14 @@ import java.util.List;
 public class OtService {
 
     private final RoomRepository roomRepository;
+    private final UserRepository userRepository;
 
     public OtService(
-            @Qualifier("roomRepository") RoomRepository roomRepository
+            RoomRepository roomRepository,
+            UserRepository userRepository
     ) {
         this.roomRepository = roomRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Integer> findFloor(String userId, String type) {
@@ -33,5 +38,9 @@ public class OtService {
         room.setId(Long.parseLong(id));
         room.setOccupy(newOccupy);
         roomRepository.save(room);
+    }
+
+    public User findUser(String userId) {
+        return userRepository.find(userId);
     }
 }

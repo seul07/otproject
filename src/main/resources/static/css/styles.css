@@ -11436,3 +11436,27 @@ video.bg-video {
   border: #1a1a1a solid;
   background: #ced4da;
 }
+
+.navbar-right{
+  float: right!important;
+  margin-right: -15px;
+}
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.header{
+  background-color: #1a1a1a;
+  color : white;
+}
+
+.footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
