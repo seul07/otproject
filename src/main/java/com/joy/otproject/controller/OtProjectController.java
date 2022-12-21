@@ -23,7 +23,7 @@ public class OtProjectController {
         this.otService = otService;
     }
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(Model model){
         model.addAttribute("data","hello");
         return "main";
