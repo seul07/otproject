@@ -5,4 +5,4 @@
 ██║░░██║░░░██║░░░██╔═══╝░██╔══██╗██║░░██║██╗░░██║██╔══╝░░██║░░██╗░░░██║░░░
 ╚█████╔╝░░░██║░░░██║░░░░░██║░░██║╚█████╔╝╚█████╔╝███████╗╚█████╔╝░░░██║░░░
 ░╚════╝░░░░╚═╝░░░╚═╝░░░░░╚═╝░░╚═╝░╚════╝░░╚════╝░╚══════╝░╚════╝░░░░╚═╝░░░
-${Ansi.RED} :: Spring Boot${spring-boot.formatted-version}: (active profile, ${spring.profiles.active}) :: ${Ansi.DEFAULT}
+${Ansi.RED} :: Spring Boot${spring-boot.formatted-version}

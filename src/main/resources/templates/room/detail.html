@@ -31,11 +31,15 @@
         <div class="col-sm-8 text-left">
             <div style="margin-top:150px;margin-left:30%">
                 <p class="select-text">남/여</p>
-                <select name="type" class="form-control" style="width:25%">
-                    <option value="">선택하시오.</option>
-                    <option value="M">남</option>
-                    <option value="W">여</option>
-                </select>
+                <div style="">
+                    남<input type="radio" name="type" onchange="changeType(this)" th:value="M"  checked>
+                    여<input type="radio" name="type" onchange="changeType(this)" th:value="W" >
+                </div>
+<!--                <select name="type" class="form-control" style="width:25%">-->
+<!--                    <option value="">선택하시오.</option>-->
+<!--                    <option value="M">남</option>-->
+<!--                    <option value="W">여</option>-->
+<!--                </select>-->
                 <p class="select-text">층수</p>
                 <select name="floor" class="form-control" style="width:25%">
                     <option value="">선택하시오.</option>
@@ -105,10 +109,26 @@
 <!--</div>-->
 </body>
 <script>
+
+    init();
+
+    function init(){
+        let userId = document.querySelector("input[name=userId]").value;
+        let type = document.querySelector("input[name=type]").value;
+        if(type==""){
+            return;
+        }
+        getFloorList(type,userId)
+            .then(response => {
+                let html = setFloor(response.data);
+                document.querySelector("select[name=floor]").innerHTML = html;
+            })
+
+    }
+
     let userId = document.querySelector("input[name=userId]").value;
-    document.querySelector('select[name=type]').addEventListener('change',  () => {
-        let type = document.querySelector("select[name=type] option:checked").value;
-        console.log(type);
+    function changeType(current){
+        let type = current.value;
         if(type==""){
             return;
         }
@@ -119,7 +139,7 @@
                 document.querySelector("select[name=floor]").innerHTML = html;
             })
 
-    });
+    }
 
     function getFloorList(type,userId){
         return axios.get( "/user/floor/"+userId+"/"+type);
@@ -137,7 +157,7 @@
     }
 
     document.querySelector('select[name=floor]').addEventListener('change',  () => {
-        let type = document.querySelector("select[name=type] option:checked").value;
+        let type = document.querySelector("input[name=type]:checked").value;
         let floor = document.querySelector("select[name=floor] option:checked").value;
         if(!floor){
             return;
@@ -171,7 +191,6 @@
     }
 
     let rooms = document.querySelectorAll(".room-block");
-    console.log(rooms);
 
     document.querySelector('#rooms').addEventListener('click', function(e) {
         e.preventDefault();
@@ -187,7 +206,7 @@
         }
         updateRoomOccupy(id,userId,newOccupy)
             .then(response => {
-                let type = document.querySelector("select[name=type] option:checked").value;
+                let type = document.querySelector("input[name=type]").value;
                 let floor = document.querySelector("select[name=floor] option:checked").value;
                 setRoomList(type,floor);
 
