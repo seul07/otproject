@@ -4,19 +4,18 @@ import com.joy.otproject.entity.Room;
 import com.joy.otproject.entity.User;
 import com.joy.otproject.repository.RoomRepository;
 import com.joy.otproject.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class OtService {
+public class HpptProjectService {
 
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
 
-    public OtService(
+    public HpptProjectService(
             RoomRepository roomRepository,
             UserRepository userRepository
     ) {

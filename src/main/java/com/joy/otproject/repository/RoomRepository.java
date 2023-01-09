@@ -25,14 +25,14 @@ public class RoomRepository {
     }
 
     public List<Integer> findAllByString(String userId, String type) {
-        return em.createQuery("select distinct r.floor from ot_room r join r.user u where r.roomType = :type and u.userId= :userId order by r.floor", Integer.class)
+        return em.createQuery("select distinct r.floor from hppt_room r join r.user u where r.roomType = :type and u.userId= :userId order by r.floor", Integer.class)
                 .setParameter("type", type)
                 .setParameter("userId", userId)
                 .getResultList();
     }
 
     public List<Room> findAllByString2(String userId, String type, Integer floor) {
-        return em.createQuery("select r from ot_room r join r.user u where r.roomType = :type and u.userId= :userId and r.floor= :floor order by r.roomNumber", Room.class)
+        return em.createQuery("select r from hppt_room r join r.user u where r.roomType = :type and u.userId= :userId and r.floor= :floor order by r.roomNumber", Room.class)
                 .setParameter("type", type)
                 .setParameter("userId", userId)
                 .setParameter("floor", floor)

@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: "dev"
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/otproject?allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://127.0.0.1:3306/hpptproject?useUnicode=true&serverTimezone=Asia/Seoul
     username: root
-    password: asdf
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:

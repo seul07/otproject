@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity(name = "ot_user")
+@Entity(name = "hppt_user")
 @Getter @Setter
 public class User {
     @Id
@@ -20,5 +20,4 @@ public class User {
     String address;
     @CreatedDate
     LocalDateTime createdDate;
-    String otUsercol;
 }

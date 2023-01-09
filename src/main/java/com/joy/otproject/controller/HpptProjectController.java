@@ -2,8 +2,7 @@ package com.joy.otproject.controller;
 
 import com.joy.otproject.entity.Room;
 import com.joy.otproject.entity.User;
-import com.joy.otproject.service.OtService;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.joy.otproject.service.HpptProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-public class OtProjectController {
+public class HpptProjectController {
 
-    private final OtService otService;
+    private final HpptProjectService hpptProjectService;
 
-    public OtProjectController(
-            OtService otService
+    public HpptProjectController(
+            HpptProjectService hpptProjectService
     ) {
-        this.otService = otService;
+        this.hpptProjectService = hpptProjectService;
     }
 
     @GetMapping("/")
@@ -32,7 +31,7 @@ public class OtProjectController {
     @GetMapping("/user/{userId}")
     @ResponseBody
     public String userFind(@PathVariable String userId, Model model){
-        User user = otService.findUser(userId);
+        User user = hpptProjectService.findUser(userId);
         String message="FAIL";
         if(user!=null){
             message="SUCCESS";
@@ -49,7 +48,7 @@ public class OtProjectController {
     @GetMapping("/user/floor/{userId}/{type}")
     @ResponseBody
     public List<Integer> userFloor(@PathVariable String userId,@PathVariable String type, Model model){
-        List<Integer> floors = otService.findFloor(userId,type);
+        List<Integer> floors = hpptProjectService.findFloor(userId,type);
         return floors;
     }
 
@@ -58,7 +57,7 @@ public class OtProjectController {
     public List<Room> userRooms(@PathVariable String userId,@PathVariable String type,
                                    @PathVariable String floor,
                                    Model model){
-        List<Room> rooms = otService.findRooms(userId,type,floor);
+        List<Room> rooms = hpptProjectService.findRooms(userId,type,floor);
         return rooms;
     }
 
@@ -69,7 +68,7 @@ public class OtProjectController {
                                 Model model){
         String result = "success";
         try {
-            otService.updateRoom(userId,id,newOccupy);
+            hpptProjectService.updateRoom(userId,id,newOccupy);
         }catch (Exception e){
             result="fail";
         }

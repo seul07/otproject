@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Entity(name = "ot_room")
+@Entity(name = "hppt_room")
 @Getter @Setter
 public class Room {
     @Id
