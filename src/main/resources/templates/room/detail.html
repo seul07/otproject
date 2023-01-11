@@ -1,112 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/header::head"></head>
+<head th:replace="layout/header :: header"></head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">hpptProject</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" th:text="${userId}"> </a></li>
-            </ul>
+<div class="container">
+
+    <div th:replace="layout/bodyHeader :: bodyHeader" />
+
+    <div class="jumbotron">
+        <input type="hidden" name="userId" th:value="${userId}" >
+        <table class="table">
+            <tr>
+                <td>
+                    Type
+                </td>
+                <td>
+                    Man <input type="radio" name="type" onchange="changeType(this)" th:value="M"  checked>
+                    Woman <input type="radio" name="type" onchange="changeType(this)" th:value="W" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Floor
+                </td>
+                <td>
+                    <select name="floor" class="form-control w-100" style="width:25%">
+                        <option value="">선택하시오.</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+
+    <div class="border-light room-div">
+        <div id="rooms">
+
+
         </div>
     </div>
-</nav>
 
-<div class="container-fluid text-center">
-    <input name="userId" type="hidden" th:value="${userId}">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-        </div>
-        <div class="col-sm-8 text-left">
-            <div style="margin-top:150px;margin-left:30%">
-                <p class="select-text">남/여</p>
-                <div style="">
-                    남<input type="radio" name="type" onchange="changeType(this)" th:value="M"  checked>
-                    여<input type="radio" name="type" onchange="changeType(this)" th:value="W" >
-                </div>
-<!--                <select name="type" class="form-control" style="width:25%">-->
-<!--                    <option value="">선택하시오.</option>-->
-<!--                    <option value="M">남</option>-->
-<!--                    <option value="W">여</option>-->
-<!--                </select>-->
-                <p class="select-text">층수</p>
-                <select name="floor" class="form-control" style="width:25%">
-                    <option value="">선택하시오.</option>
-                </select>
-            </div>
+    <div th:replace="layout/footer :: footer" />
 
-            <hr>
+</div> <!-- /container -->
 
-            <div style="margin-top:10px;margin-left:30%">
-                <div id="rooms">
-
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-            </div>
-            <div class="well">
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="container-fluid text-center">
-    <p></p>
-</footer>
-
-<!--<div class="header">-->
-<!--    <div>-->
-<!--        <a class="navbar-brand" href="#">otProject</a>-->
-<!--    </div>-->
-<!--    <div class="navbar-right">-->
-<!--        <a th:text="${userId}"></a>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="contents">-->
-<!--    <div class="col-sm-2 sidenav"></div>-->
-<!--    <div class="col-sm-8 text-left">-->
-<!--        남/여-->
-<!--        <select name="type">-->
-<!--            <option value="">선택하시오.</option>-->
-<!--            <option value="W">여</option>-->
-<!--            <option value="M">남</option>-->
-<!--        </select>-->
-<!--        층수-->
-<!--        <select name="floor">-->
-
-<!--        </select>-->
-
-<!--        <div id="rooms">-->
-
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-sm-2 sidenav"></div>-->
-<!--</div>-->
-<!--<div class="footer">-->
-
-<!--</div>-->
 </body>
 <script>
 
@@ -128,6 +66,7 @@
 
     let userId = document.querySelector("input[name=userId]").value;
     function changeType(current){
+        document.querySelector("#rooms").innerHTML = '';
         let type = current.value;
         if(type==""){
             return;
@@ -218,23 +157,5 @@
     }
 
 </script>
-<style>
-    #rooms{display: flex}
-    .room-block{
-        width: 50px;
-        height: 50px;
-        border: #1a1a1a thin;
-        background: #ced4da;
-        margin : 2px;
-    }
 
-    .active{
-        background: #ffc720;
-    }
-
-    .select-text{
-        padding: 5px;
-        font-size: 16px;
-    }
-</style>
 </html>

@@ -1,11 +1,10 @@
-package com.joy.otproject.repository;
+package com.joy.hpptproject.repository;
 
-import com.joy.otproject.entity.User;
+import com.joy.hpptproject.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.UUID;
 
 @Repository
 public class UserRepository {

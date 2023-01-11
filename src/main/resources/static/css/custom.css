@@ -1,0 +1,20 @@
+#rooms{display: flex}
+.room-block{
+    width: 70px;
+    height: 70px;
+    border: #1a1a1a thin;
+    background: #ced4da;
+    margin : 2px;
+}
+
+.active{
+    background: #ffc720;
+}
+
+.select-text{
+    padding: 5px;
+    font-size: 16px;
+}
+.room-div{
+    height: 200px;
+}

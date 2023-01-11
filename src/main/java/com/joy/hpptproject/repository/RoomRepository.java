@@ -1,12 +1,10 @@
-package com.joy.otproject.repository;
+package com.joy.hpptproject.repository;
 
-import com.joy.otproject.entity.Room;
+import com.joy.hpptproject.entity.Room;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository

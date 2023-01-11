@@ -1,8 +1,8 @@
-package com.joy.otproject.controller;
+package com.joy.hpptproject.controller;
 
-import com.joy.otproject.entity.Room;
-import com.joy.otproject.entity.User;
-import com.joy.otproject.service.HpptProjectService;
+import com.joy.hpptproject.entity.Room;
+import com.joy.hpptproject.entity.User;
+import com.joy.hpptproject.service.HpptProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,9 +1,9 @@
-package com.joy.otproject.service;
+package com.joy.hpptproject.service;
 
-import com.joy.otproject.entity.Room;
-import com.joy.otproject.entity.User;
-import com.joy.otproject.repository.RoomRepository;
-import com.joy.otproject.repository.UserRepository;
+import com.joy.hpptproject.entity.Room;
+import com.joy.hpptproject.entity.User;
+import com.joy.hpptproject.repository.RoomRepository;
+import com.joy.hpptproject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

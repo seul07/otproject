@@ -1,14 +1,11 @@
-package com.joy.otproject.entity;
+package com.joy.hpptproject.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity(name = "hppt_user")
 @Getter @Setter

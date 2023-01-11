@@ -1,11 +1,9 @@
-package com.joy.otproject.entity;
+package com.joy.hpptproject.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-import static javax.persistence.FetchType.LAZY;
 
 @Entity(name = "hppt_room")
 @Getter @Setter
